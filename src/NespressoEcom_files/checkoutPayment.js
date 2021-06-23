@@ -1,0 +1,2 @@
+/*! 2021-20-05 14:30  */
+!function(a,b){"use strict";a("select.field-error").each(function(b,c){a("#"+c.id+"-button").addClass("field-error")}),a(".payment-continue").on("click",function(c){c.preventDefault(),b.validateSelectedAddress(function(c){"OK"===c?a("#paymentInfoDTO").submit():b.openEditAddressesPopup(c)})}),a(document).ready(function(){b.validateSelectedAddress(function(a){b.openEditAddressesPopup(a)}),a(".poNumber__label--inputFocus").on("click",function(){a("#poNumber").focus()})})}(jQuery,checkValidateAddresses);

@@ -1,47 +1,5 @@
-const stateContainer = document.querySelector('.current-state');
-const requestContainer = document.querySelector('.request-container');
-const responseContainer = document.querySelector('.response-container');
-const paypalContainer = document.getElementById("paypal-container");
 var dropinContainer= document.getElementById("dropin-container");
-const interacContainer= document.getElementById("interac-container");
 
-function showFinalComponent(response) {
-
-  var resultCode = JSON.parse(response).resultCode;
-  var pspRef = JSON.parse(response).pspReference;
-  const interacContainer= document.getElementById("interac-container");
-  //interacContainer.innerHTML = '<div>✅response'+response+'<br> Adyen PSP reference: '+pspRef+'</div>';
-
-  if (resultCode == "Authorised"){
-    interacContainer.innerHTML = '<div>✅Payment result:'+resultCode+'<br> Adyen PSP reference: '+pspRef+'</div>';
-  }
-  else if (resultCode == "Received"){
-    interacContainer.innerHTML = '<div>🔵Payment result:'+resultCode+'<br> Adyen PSP reference (Offer): '+pspRef+'</div>';
-  }
-  else if (resultCode == "Cancelled"){
-    interacContainer.innerHTML = '<div>🔵Payment result:'+resultCode+'<br> Adyen PSP reference (Offer): '+pspRef+'</div>';
-  }
-  else {
-    interacContainer.innerHTML = '<div>❌Payment result'+resultCode+'<br> Adyen PSP reference: '+pspRef+'</div>';
-  }
-}
-// Demo - Update server response container
-function showFinalResult(response) {
-  var resultCode = JSON.parse(response).resultCode;
-  var pspRef = JSON.parse(response).pspReference;
-
-  if (resultCode == "Authorised"){
-    paypalContainer.innerHTML = '<div>✅Paypal result:'+resultCode+'<br> Adyen PSP reference: '+pspRef+'</div>';
-  }
-  else if (resultCode == "Received"){
-    paypalContainer.innerHTML = '<div>🔵Paypal result:'+resultCode+'<br> Adyen PSP reference (Offer): '+pspRef+'</div>';
-  }
-  else {
-    paypalContainer.innerHTML = '<div>❌Paypal result'+resultCode+'<br> Adyen PSP reference: '+pspRef+'</div>';
-  }
-}
-
-//https://www.freeformatter.com/javascript-escape.html#ad-output
 function showFinalResultDropin(response) {
   var resultCode = JSON.parse(response).resultCode;
   var pspRef = JSON.parse(response).pspReference;
@@ -78,21 +36,3 @@ function showFinalResultDropin(response) {
 
   dropinContainer.innerHTML = textToShow;
 }
-
-
-// Demo - Copy Source Code Examples
-document.querySelectorAll('.copy-sample-code').forEach(c => {
-    c.addEventListener('click', () => {
-        const code = document.querySelector('.source-code');
-        const range = document.createRange();
-        range.selectNode(code);
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
-        document.execCommand('copy');
-        c.classList.add('copy-sample-code--active');
-
-        setTimeout(() => {
-            c.classList.remove('copy-sample-code--active');
-        }, 1000);
-    });
-});

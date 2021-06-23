@@ -1,0 +1,1 @@
+(function () { /*Espagne*/	var country = {'code':'es','id':4,'defaultLangauge':'es'};	if (!window.evidon) window.evidon = {};	if (window.evidon.notice) window.evidon.notice.setLocation(country);	else window.evidon.location = country;})(); 

@@ -1,5 +1,5 @@
-const defaultCurrency = localStorage.getItem('defaultCurrency')!=null ? localStorage.getItem('defaultCurrency') : 'EUR';
-const defaultCountry = localStorage.getItem('defaultCountry')!=null ? localStorage.getItem('defaultCountry'): 'NL';
+const defaultCurrency = localStorage.getItem('defaultCurrency')!=null ? localStorage.getItem('defaultCurrency') : 'BRL';
+const defaultCountry = localStorage.getItem('defaultCountry')!=null ? localStorage.getItem('defaultCountry'): 'BR';
 const defaultLocale = localStorage.getItem('defaultLocale')!=null ? localStorage.getItem('defaultLocale') : 'en-GB';
 const defaultAmount = Math.floor(Math.random() * 100000)
 const defaultShopperReference = localStorage.getItem('shopperReference')!=null ? localStorage.getItem('shopperReference'):'mail@adyen.com'
@@ -7,27 +7,27 @@ const defaultRequest= localStorage.getItem('requestToPayments')!=null ? localSto
 
 const defaultShopperStatement= "test_c1"
 
-const countries = ['ES','BE','NO','MX','NL','PT','AT','SE','DE','FR','CN','KR', 'AU']
-const countryNames = ['Spain','Belgium','Norway','Mexico','Netherlands','Portugal','Austria','Sweden','Deutschland','France','China', 'Korea','Australia']
+const countries = ['ES','BE','NO','MX','NL','PT','AT','SE','DE','FR','CN','KR', 'AU', 'CH','GB']
+const countryNames = ['Spain','Belgium','Norway','Mexico','Netherlands','Portugal','Austria','Sweden','Germany','France','China', 'Korea','Australia', 'Switzerland', 'UK']
 const locale = ['es-ES','en-GB','pt-PT']
 const currencies = ['EUR','GBP','USD','CNY','SEK','MXN','NOK','KRW','AUD']
-const flags = ['🇪🇸','🇧🇪','🇳🇴','🇲🇽','🇳🇱','🇵🇹','🇦🇹','🇸🇪','🇩🇪','🇫🇷','🇨🇳','🇰🇷','🇦🇺']
+const flags = ['🇪🇸','🇧🇪','🇳🇴','🇲🇽','🇳🇱','🇵🇹','🇦🇹','🇸🇪','🇩🇪','🇫🇷','🇨🇳','🇰🇷','🇦🇺', '🇨🇭', '🇬🇧']
 const localeflags = ['🇪🇸','🇬🇧','🇵🇹']
 
 const defaultOrigin = () => {
     if (window.location.origin.includes("heroku", 1)) {
-        return "https://coffeekiosk.herokuapp.com/#/checkout"
+        return ""
     } else {
-       return "http://localhost:3000/#/checkout"
+       return window.location.href//"http://localhost:3000/#/checkout"
     }
 }
 
 const defaultUrl = (type) => {
     if (window.location.origin.includes("heroku", 1)) {
-        return "https://coffeekiosk.herokuapp.com/#/checkout"
+        return ""
     } else {
         if (type == "scheme") return "http://localhost:3000/fallbackthreedone"
-        else return "http://localhost:3000/#/checkout"
+        else return window.location.href//"http://localhost:3000/#/checkout"
       }
 }
 //Drop down list utils
@@ -90,23 +90,13 @@ const paymentMethodsConfig = {
         value: defaultAmount,
         currency: defaultCurrency
     }
-    //merchantId: 'MH5P3AYBGR47S'
-    // paypal: {
-    //     merchantId: 'UZQDU74XMGU56',
-    //     environment: "test",
-    //     countryCode: defaultCountry,
-    //     amount: {
-    //         currency: defaultCurrency,
-    //         value: defaultAmount
-    //     }
-    // }
 };
 
 const paymentsDefaultConfig = {
     //shopperReference: 'Checkout Components sample code test',
     channel: 'Web',
-    returnUrl: defaultUrl,
-    origin: defaultOrigin,
+    returnUrl: defaultUrl(),
+    origin: defaultOrigin(),
     reference: 'KIOSK-DROPIN',
     dateOfBirth: '1970-01-01',
     shopperReference: defaultShopperReference,
@@ -116,17 +106,9 @@ const paymentsDefaultConfig = {
         value: defaultAmount,
         currency: defaultCurrency
     },
+    socialSecurityNumber: '56861752509',
     shopperLocale: defaultLocale,
     shopperStatement: defaultShopperStatement,
-    // paypal: {
-    //     merchantId: 'UZQDU74XMGU56',
-    //     environment: "test",
-    //     countryCode: "ES",
-    //     amount: {
-    //         currency: "defaultCurrency",
-    //         value: 100
-    //     },
-    // },
     shopperIP: '127.0.0.1',
     additionalData: {
         allow3DS2: true
@@ -244,70 +226,11 @@ const getPaymentMethods = () =>
    //    "storeDetails": false
    // },
 
-   var perfu = {
-          "amount": {
-                "currency": "EUR",
-                "value": 6014
-          },
-          "channel": "Web",
-          "countryCode": "BE",
-          "lineItems": [
-                {
-                       "amountIncludingTax": 5615,
-                       "description": "INVICTUS edt vapo 100 ml",
-                       "id": "53983",
-                       "productUrl": "https://www.localhost/es/paco-rabanne/invictus-eau-de-toilette-vaporizador/p_39012/",
-                       "quantity": 1
-                },
-                {
-                       "amountIncludingTax": 399,
-                       "description": "Gastos de envío",
-                       "id": "handling",
-                       "quantity": 1
-                }
-          ],
-          "paymentMethod": {
-                "type": "scheme",
-                "brand": "bcmc",
-                "storedPaymentMethodId": "8316196909890641"
-          },
-          "recurringProcessingModel": "CardOnFile",
-          "reference": "A140005209",
-          "returnUrl": "http://localhost:3000",
-          "shopperEmail": "alberto.vives@perfumesclub.com",
-          "shopperInteraction": "ContAuth",
-          "shopperLocale": "es_ES",
-          "shopperReference": "mail@adyen.com",
-          "storePaymentMethod": false,
-          "telephoneNumber": "+34666666666",
-          "merchantAccount": "PerfumesClubCOM"
-   }
-
-   const makePOSPayment = (paymentMethod, config = {}) => {
-       //const paymentsConfig = { ...config };
-       const paymentsConfig = {
-           ...paymentsDefaultConfig,
-           ...config
-       };
-       var paymentRequest = {
-           ...paymentsConfig,
-           ...paymentMethod
-       };
-
-       return httpPost('terminalAPI', paymentRequest)
-           .then(response => {
-               if (response.error) throw 'Payment initiation failed';
-
-
-               //document.cookie = "paymentData=" + response.paymentData;
-               //document.cookie = "redirectResult=" + response.redirectResult;
-               return response;
-           })
-           .catch(error => {
-               console.log('error on makePOSPayment' + error)
-               throw Error(error);
-           });
-   };
+   // "threeDS2RequestData" : {
+   //    "deviceChannel" : "browser",
+   //    "notificationURL" : "http://localhost:3000/#/checkout",
+   //    "threeDSCompInd" : "Y"
+   // },
 
 // Posts a new payment into the local server
 const makePayment = (paymentMethod, config = {}) => {
@@ -373,8 +296,8 @@ const paymentDetails = (paymentData, detailsKey, config = {}) => {
                 //[detailsKey]: config
             }
         }
-    }
-  else {
+     }
+   else {
     paymentRequest =
         paymentData
 
@@ -416,57 +339,6 @@ httpPost('fallbackthreedone')
     })
 .catch(console.error);
 
-const paymentLinks = (paymentData) => {
-    var paymentRequest = paymentData;
-
-    paymentRequest.amount.value = parseInt(getAmount());
-    paymentRequest.amount.currency = getCurrencyCode();
-    paymentRequest.returnUrl = defaultUrl();
-    paymentRequest.origin = defaultUrl();
-    paymentRequest.shopperReference = defaultShopperReference;
-
-    return httpPostnoJson('paymentLinks', paymentRequest)
-        .then(response => {
-            if (response.error) throw 'Payment initiation failed';
-
-            return JSON.parse(response).url;
-        })
-        .catch(error => {
-            console.log('error on paymentLinks' + error)
-            throw Error(error);
-        });
-};
-
-const paymentLinksQR = (paymentData) => {
-    var paymentRequest = paymentData;
-
-    return httpPostnoJson('paymentLinksQR', paymentRequest)
-        .then(response => {
-            if (response.error) throw 'Payment initiation failed';
-
-            //return JSON.parse(response);
-            return response;
-        })
-        .catch(error => {
-            console.log('error on paymentLinksQR' + error)
-            throw Error(error);
-        });
-};
-
-
-// Fetches an originKey from the local server
-const getOriginKey = () =>
-httpPost('originKeys')
-.then(response => {
-    var origin = Object.keys(response.originKeys)[0];
-
-    if (response.error || !response.originKeys) throw 'No originKey available';
-    else if (origin.includes("heroku", 1)) {
-        //origin = origin.replace("http", "https");
-        //console.log('origin '+origin)
-        //console.log('Originkey'+response.originKeys[Object.keys(response.originKeys)[0]]);
-        return response.originKeys[Object.keys(response.originKeys)[0]];//response.originKeys[origin];
-    }
-    return response.originKeys[Object.keys(response.originKeys)[0]];
-}).then(localStorage.setItem('dropinRequest', JSON.stringify(paymentsDefaultConfig)))
-.catch(console.error);
+const delayAndConfirm = () => {
+    //setTimeout(() =>      window.location = "http://localhost:3000/#/demo4", 2000);
+  };

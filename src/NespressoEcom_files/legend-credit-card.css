@@ -1,0 +1,19 @@
+.credit-card__choice .credit-card__legend {
+    color: #111;
+    background: transparent;
+    padding-left: 28px;
+    position: relative;
+}
+
+.credit-card__choice .credit-card__legend:before {
+	content: "\F11A";
+    font-family: Crema Glyphs!important;
+    font-style: normal;
+    font-weight: 400!important;
+    vertical-align: top;
+    left: 0;
+    top: .25rem;
+    position: absolute;
+    font-size: 1.25rem;
+    color: #986f38;
+}
