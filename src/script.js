@@ -44,7 +44,7 @@ const Demo1 = {
         document.getElementById('locales').getElementsByTagName('option')[getLocaleIndex()].selected = 'selected'
         document.getElementById('currencies').getElementsByTagName('option')[getCurrencyIndex()].selected = 'selected'
 
-        console.log("Showing Payment Methods for: Country" +
+        console.log("Showing Payment Methods for: Country " +
             getCountryCode(),
             +" Currency: " +
             getCurrencyCode())
@@ -75,18 +75,13 @@ const Demo3 = {
     },
     methods: {
         handleOnAdditionalDetails(statedata) {
-            //paymentDetails(statedata) //alipay
+          if (localStorage.getItem('actiontype') == "threeDS2"){
             paymentDetails(statedata)
                 .then(result => {
-                    //result = resultFake;
-                    //localStorage.removeItem('paymentData');
-                    // Your function to show the final result to the shopper.
                     showFinalResultDropin(result);
-                    //delayAndConfirm()
-                    //console.log('paymentDetails result: ' + result)
                     localStorage.clear();
                 })
-
+          }
         }
     },
     mounted() {
@@ -117,8 +112,6 @@ const Demo3 = {
 
             paymentDetails(paymentData, detailsKey, payload) //alipay
                 .then(result => {
-                    //result = resultFake;
-                    //localStorage.removeItem('paymentData');
                     // Your function to show the final result to the shopper.
                     showFinalResultDropin(result);
                     delayAndConfirm()
@@ -134,8 +127,7 @@ const Demo3 = {
                 clientKey: "test_E3XT7DO34FETRCDF4XFV5XX2GMRW3TQZ",
                 onAdditionalDetails: this.handleOnAdditionalDetails(statedata) //paymentDetails(statedata)//this.handleOnAdditionalDetails(statedata)//handleOnAdditionalDetails
             };
-
-            const checkout = new AdyenCheckout(configuration);
+            //const checkout = new AdyenCheckout(configuration);
             //paymentsDefaultConfig.returnUrl =  "http://localhost:3000/#/demo2"
             //paymentsDefaultConfig.origin =  "http://localhost:3000/#/demo2"
             makePayment(statedata)

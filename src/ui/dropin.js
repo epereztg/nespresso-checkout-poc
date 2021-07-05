@@ -58,8 +58,7 @@ var dropinComponent =
                     if (JSON.parse(result).resultCode == 'ChallengeShopper' || JSON.parse(result).resultCode == 'IdentifyShopper') {
                         dropin.handleAction(JSON.parse(result).action);
                     } else if (JSON.parse(result).resultCode == 'Authorised') {
-                      //  showFinalResultDropin(result);
-                        dropin.setStatus('success');
+                        showFinalResultDropin(result);
                         delayAndConfirm()
                         localStorage.clear()
                     } else if (JSON.parse(result).resultCode == 'Cancelled') {
