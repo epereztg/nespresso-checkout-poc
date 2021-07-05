@@ -39,7 +39,7 @@ var paymentMethodsConfiguration = {
 var checkout = null;
 var dropinComponent =
     paymentMethodsConfig.shopperReference = defaultShopperReference
-getPaymentMethods().then(paymentMethodsResponse => {
+      getPaymentMethods().then(paymentMethodsResponse => {
     // 1. Create an instance of AdyenCheckout
      checkout = new AdyenCheckout({
         paymentMethodsConfiguration: paymentMethodsConfiguration,
@@ -47,7 +47,8 @@ getPaymentMethods().then(paymentMethodsResponse => {
           console.log("Call to onSubmit in dropin.js")
           if(state.isValid){
             localStorage.setItem('state.data', JSON.stringify(state.data));
-             window.location = "http://localhost:3000/#/demo3"
+             window.location = "http://localhost:3000/#/demo2"
+             //window.location = "http://localhost:3000/#/demo3"
           }
         },
         onAdditionalDetails: (state, dropin) => {

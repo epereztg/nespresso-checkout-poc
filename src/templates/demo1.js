@@ -13,7 +13,7 @@ var demo1  = `
       <link href="./NespressoEcom_files/responsiveLoadedFirst.css" rel="stylesheet" media="screen">
       <link rel="stylesheet" href="./NespressoEcom_files/responsiveComponents.css" media="screen" onload="if(media!=&#39;screen&#39;)media=&#39;screen&#39;">
       <noscript>
-         <link rel="stylesheet" href="/NespressoEcom_files/_ui/generated/responsiveComponents.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
+         <link rel="stylesheet" href="/NespressoEcom_files/responsiveComponents.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
       </noscript>
       <!--LOAD DROPIN ------------------------------------>
       <script src="https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/4.5.0/adyen.js"></script>
@@ -21,7 +21,7 @@ var demo1  = `
       <!--LOAD DROPIN END------------------------------------>
       <link rel="stylesheet" href="./NespressoEcom_files/responsiveCheckout.css" media="screen" onload="if(media!=&#39;screen&#39;)media=&#39;screen&#39;">
       <noscript>
-         <link rel="stylesheet" href="/_ui/generated/responsiveCheckout.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
+         <link rel="stylesheet" href="./NespressoEcom_files/responsiveCheckout.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
       </noscript>
       <style>html { display:none }</style>
 
@@ -107,7 +107,7 @@ var demo1  = `
                </li>
             </ul>
          </nav>
-         <utils:versionedresource tagtype="script" path="/_ui/generated/responsiveRegistration.js">
+         <utils:versionedresource tagtype="script" path="./NespressoEcom_files/responsiveRegistration.js">
          </utils:versionedresource>
       </div>
       <main id="main" class="content checkout">
@@ -166,6 +166,19 @@ var demo1  = `
             </div>
          </fieldset>
       </form>
+      </br></br></br>
+      <p>
+         CountryCode:
+         <select id="countries" name="countries" @change="changeLocation"></select>
+      </p>
+      <p>
+         ShopperLocale:
+         <select id="locales" name="locales" @change="changeShopperLocale"></select>
+      </p>
+      <p>
+         DefaultCurrency:
+         <select id="currencies" name="currencies" @change="changeCurrency"></select>
+      </p>
    </body>
 </html>
 `

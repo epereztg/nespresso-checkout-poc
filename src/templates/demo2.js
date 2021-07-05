@@ -13,11 +13,11 @@ var demo2  = `
       <link href="./NespressoEcom_files/responsiveLoadedFirst.css" rel="stylesheet" media="screen">
       <link rel="stylesheet" href="./NespressoEcom_files/responsiveComponents.css" media="screen" onload="if(media!=&#39;screen&#39;)media=&#39;screen&#39;">
       <noscript>
-         <link rel="stylesheet" href="/_ui/generated/responsiveComponents.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
+         <link rel="stylesheet" href="/responsiveComponents.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
       </noscript>
       <link rel="stylesheet" href="./NespressoEcom_files/responsiveCheckout.css" media="screen" onload="if(media!=&#39;screen&#39;)media=&#39;screen&#39;">
       <noscript>
-         <link rel="stylesheet" href="/_ui/generated/responsiveCheckout.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
+         <link rel="stylesheet" href="/responsiveCheckout.css?v=96083634dedd6ef7d97ea6ebad9fab6e4d8ae356">
       </noscript>
       <style>html { display:none }</style>
    </head>
