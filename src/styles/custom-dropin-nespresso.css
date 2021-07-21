@@ -1,0 +1,7 @@
+.adyen-checkout__payment-method__header {
+    padding: 16px;
+}
+.adyen-checkout__payment-method__header:after {
+    content: 'TEXT HERE';
+
+}

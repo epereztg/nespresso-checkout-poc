@@ -33,7 +33,15 @@ var paymentMethodsConfiguration = {
             },
             shopperEmail: 'mail@test.com'
         }
-    }
+    },
+    paywithgoogle: { //Example required configuration for Google Pay
+           environment: "TEST", //Change this to PRODUCTION when you're ready to accept live Google Pay payments
+           amount: {
+             currency: "EUR",
+             value: 1000
+           },
+           countryCode: getCountryCode(),
+         }
 }
 
 var checkout = null;

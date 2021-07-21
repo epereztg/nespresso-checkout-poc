@@ -99,7 +99,7 @@ const Demo3 = {
 
         const url = window.location.href
         var payload = getPayloadFromUrl(url);
-        var isRedirectCallback = url.includes("redirectResult");
+        var isRedirectCallback = url.includes("redirectResult") || url.includes("payload");
 
         if (threeds1resultCookie != null && threeds1resultCookie != "") {
             showFinalResultDropin(threeds1resultCookie)

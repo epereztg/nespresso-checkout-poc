@@ -5,13 +5,13 @@ const defaultAmount = 350000;//Math.floor(Math.random() * 100000)
 const defaultShopperReference = localStorage.getItem('shopperReference')!=null ? localStorage.getItem('shopperReference'):'mail@adyen.com'
 const defaultRequest= localStorage.getItem('requestToPayments')!=null ? localStorage.getItem('requestToPayments'):null
 
-const defaultShopperStatement= "test_c1"
+const defaultShopperStatement= "test_c1"//This is special shopperStatement to force Authorize MB Way in TESt
 
-const countries = ['ES','BE','NO','MX','NL','PT','AT','SE','DE','FR','CN','KR', 'AU', 'CH','GB', 'CO']
-const countryNames = ['Spain','Belgium','Norway','Mexico','Netherlands','Portugal','Austria','Sweden','Germany','France','China', 'Korea','Australia', 'Switzerland', 'UK', 'Colombia']
+const countries = ['ES','BE','NO','MX','NL','PT','AT','SE','DE','FR','CN','KR', 'AU', 'CH','GB', 'CO', 'BR']
+const countryNames = ['Spain','Belgium','Norway','Mexico','Netherlands','Portugal','Austria','Sweden','Germany','France','China', 'Korea','Australia', 'Switzerland', 'UK', 'Colombia', 'Brazil']
 const locale = ['es-ES','en-GB','pt-PT']
-const currencies = ['EUR','GBP','USD','CNY','SEK','MXN','NOK','KRW','AUD','COP']
-const flags = ['🇪🇸','🇧🇪','🇳🇴','🇲🇽','🇳🇱','🇵🇹','🇦🇹','🇸🇪','🇩🇪','🇫🇷','🇨🇳','🇰🇷','🇦🇺', '🇨🇭', '🇬🇧', '🇨🇴']
+const currencies = ['EUR','GBP','USD','CNY','SEK','MXN','NOK','KRW','AUD','COP','BRL']
+const flags = ['🇪🇸','🇧🇪','🇳🇴','🇲🇽','🇳🇱','🇵🇹','🇦🇹','🇸🇪','🇩🇪','🇫🇷','🇨🇳','🇰🇷','🇦🇺', '🇨🇭', '🇬🇧', '🇨🇴','🇧🇷']
 const localeflags = ['🇪🇸','🇬🇧','🇵🇹']
 
 const defaultOrigin = () => {
@@ -340,5 +340,5 @@ httpPost('fallbackthreedone')
 .catch(console.error);
 
 const delayAndConfirm = () => {
-    //setTimeout(() =>      window.location = "http://localhost:3000/#/demo4", 2000);
+    setTimeout(() =>      window.location = "http://localhost:3000/#/demo4", 2000);
   };
